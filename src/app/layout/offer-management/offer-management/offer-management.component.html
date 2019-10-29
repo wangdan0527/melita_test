@@ -1,0 +1,48 @@
+
+<div class="row">
+	<div class="col-8">
+		<div class="user-list-container mt-5">
+			<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 w-100">
+
+			  <!--- Note that these columns can be defined in any order.
+			        The actual rendered columns are set as a property on the row definition" -->
+
+			  <ng-container matColumnDef="id">
+			    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Id' | translate }} </th>
+			    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+			  </ng-container>
+
+			  <ng-container matColumnDef="name">
+			    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Name' | translate }} </th>
+			    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+			  </ng-container>
+
+			  <ng-container matColumnDef="contractEndDate">
+			    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Contract End Date' | translate }} </th>
+			    <td mat-cell *matCellDef="let element"><img src="{{element.logo_url}}"> {{element.contractEndDate}} </td>
+			  </ng-container>
+
+			  <ng-container matColumnDef="contractStartDate">
+			    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Contract Start Date' | translate }} </th>
+			    <td mat-cell *matCellDef="let element"><img src="{{element.logo_url}}"> {{element.contractStartDate}} </td>
+			  </ng-container>
+
+			  <ng-container matColumnDef="menu">
+			    <th mat-header-cell *matHeaderCellDef mat-sort-header>  </th>
+			    <td mat-cell *matCellDef="let element">                 
+			    	<mat-menu #appMenu="matMenu">
+					  <button mat-menu-item (click)="onDetails(element, i)">{{ 'Subscription Details' | translate }}</button>
+					</mat-menu>
+
+					<button mat-icon-button [matMenuTriggerFor]="appMenu">
+					  <mat-icon>more_vert</mat-icon>
+					</button>
+		        </td>
+			  </ng-container>
+
+			  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+			  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+			</table>
+		</div>
+	</div>
+</div>
