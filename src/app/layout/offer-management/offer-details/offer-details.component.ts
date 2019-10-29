@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { RestService } from '../../../service/rest-client.service'
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { MatSort } from '@angular/material/sort';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
@@ -17,8 +16,7 @@ export class OfferDetailsComponent implements OnInit {
   	private subscriptions = []
   	private displayedColumns: string[] = ['id', 'name', 'type', 'usage'];
   	private dataSource = new MatTableDataSource([]);
-
-  	@ViewChild(MatSort, {static: true}) sort: MatSort;
+    
 
   	constructor(
 	  	private restService: RestService,
@@ -34,10 +32,8 @@ export class OfferDetailsComponent implements OnInit {
 	loadSubscriptions()
 	{
 		this.restService.getSubscriptions(this.offerId).subscribe(response => {
-			this.subscriptions = response.subscriptions  		
+			this.subscriptions = response	
 			this.dataSource = new MatTableDataSource(this.subscriptions)
-      		this.dataSource.sort = this.sort
-
       		this.bLoading = false;
 		})
 	}

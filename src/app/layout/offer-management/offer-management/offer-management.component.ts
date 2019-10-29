@@ -28,7 +28,7 @@ export class OfferManagementComponent implements OnInit {
   loadOffers()
   {
   	this.restService.getOffers().subscribe(response => {
-  		this.offers = response.offers
+  		this.offers = response
   		this.dataSource = new MatTableDataSource(this.offers)
       this.dataSource.sort = this.sort
   	})
